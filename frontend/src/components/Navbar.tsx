@@ -48,9 +48,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} className="navbar-actions">
         {/* Connection Status Pill */}
-        <div className="status-pill status-online" title="Backend REST API Status">
-          <span className="status-dot-pulse" style={{ backgroundColor: isBackendConnected ? '#10b981' : '#f43f5e' }}></span>
-          <span>{isBackendConnected ? 'PostgreSQL Active' : 'Connecting API...'}</span>
+        <div
+          className={`status-pill ${isBackendConnected ? 'status-online' : ''}`}
+          style={!isBackendConnected ? { background: 'rgba(245, 158, 11, 0.12)', color: '#d97706', border: '1px solid rgba(245, 158, 11, 0.3)' } : {}}
+          title={isBackendConnected ? 'Connected to live PostgreSQL database' : 'Running in Live Demo mode with client-side persistence'}
+        >
+          <span
+            className="status-dot-pulse"
+            style={{ backgroundColor: isBackendConnected ? '#10b981' : '#f59e0b' }}
+          ></span>
+          <span>{isBackendConnected ? 'PostgreSQL Active' : 'Live Demo Mode'}</span>
         </div>
 
         {/* Directory Count Pill */}
